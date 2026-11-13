@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOYDALI.UZ | Barcha foydali xizmatlar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="#" class="logo">✦ FOYDALI<span>.UZ</span></a>
+
+    <nav>
+      <a href="#home">Bosh sahifa</a>
+      <a href="#tools">Xizmatlar</a>
+      <a href="#about">Biz haqimizda</a>
+    </nav>
+
+    <button id="themeBtn" class="theme-btn">🌙</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="tag">✦ BARCHASI BIR JOYDA</span>
+        <h1>Hayotingizni <span>osonlashtiring!</span></h1>
+        <p>
+          Kundalik hayotingiz uchun kerakli barcha foydali
+          vositalar bitta platformada.
+        </p>
+        <a href="#tools" class="main-btn">Xizmatlardan foydalanish →</a>
+      </div>
+      <div class="hero-icon">✦</div>
+    </section>
+
+    <section class="tools-section" id="tools">
+      <div class="section-title">
+        <span class="tag">FOYDALI VOSITALAR</span>
+        <h2>Barcha xizmatlar</h2>
+        <p>O‘zingizga kerakli xizmatni tanlang.</p>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchInput"
+          placeholder="Xizmatlarni qidirish...">
+        <span>🔍</span>
+      </div>
+
+      <div class="tools-grid">
+
+        <div class="tool-card" data-name="kalkulyator hisob matematik">
+          <div class="tool-icon">🧮</div>
+          <h3>Kalkulyator</h3>
+          <p>Tez va oson hisob-kitob qiling.</p>
+          <button onclick="openTool('calculator')">Ochish →</button>
+        </div>
+
+        <div class="tool-card" data-name="bloknot yozuv eslatma">
+          <div class="tool-icon">📝</div>
+          <h3>Onlayn bloknot</h3>
+          <p>Yozuvlaringizni saqlab boring.</p>
+          <button onclick="openTool('notes')">Ochish →</button>
+        </div>
+
+        <div class="tool-card" data-name="vazifa reja todo">
+          <div class="tool-icon">✅</div>
+          <h3>Vazifalar</h3>
+          <p>Kundalik ishlaringizni rejalashtiring.</p>
+          <button onclick="openTool('tasks')">Ochish →</button>
+        </div>
+
+        <div class="tool-card" data-name="qr kod yaratish">
+          <div class="tool-icon">🔳</div>
+          <h3>QR kod</h3>
+          <p>Matn yoki havoladan QR kod yarating.</p>
+          <button onclick="openTool('qr')">Ochish →</button>
+        </div>
+
+        <div class="tool-card" data-name="matn tahrirlash yozish">
+          <div class="tool-icon">✍️</div>
+          <h3>Matn muharriri</h3>
+          <p>Matnni o‘zgartiring va nusxalang.</p>
+          <button onclick="openTool('text')">Ochish →</button>
+        </div>
+
+        <div class="tool-card" data-name="ai suniy intellekt yordamchi">
+          <div class="tool-icon">🤖</div>
+          <h3>AI yordamchi</h3>
+          <p>Sun'iy intellekt bilan suhbatlashing.</p>
+          <button onclick="openTool('ai')">Ochish →</button>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="workspace" id="workspace">
+      <div class="workspace-head">
+        <h2 id="toolTitle">Xizmat</h2>
+        <button class="close-btn" onclick="closeTool()">✕ Yopish</button>
+      </div>
+
+      <!-- CALCULATOR -->
+      <div class="tool-content" id="calculator">
+        <div class="calculator">
+          <input type="text" id="calcDisplay"
+            value="0" readonly>
+          <div class="calc-grid">
+            <button onclick="calcClear()" class="danger">AC</button>
+            <button onclick="calcDelete()">DEL</button>
+            <button onclick="calcAdd('/')">÷</button>
+            <button onclick="calcAdd('*')">×</button>
+
+            <button onclick="calcAdd('7')">7</button>
+            <button onclick="calcAdd('8')">8</button>
+            <button onclick="calcAdd('9')">9</button>
+            <button onclick="calcAdd('-')">−</button>
+
+            <button onclick="calcAdd('4')">4</button>
+            <button onclick="calcAdd('5')">5</button>
+            <button onclick="calcAdd('6')">6</button>
+            <button onclick="calcAdd('+')">+</button>
+
+            <button onclick="calcAdd('1')">1</button>
+            <button onclick="calcAdd('2')">2</button>
+            <button onclick="calcAdd('3')">3</button>
+            <button onclick="calcCalculate()" class="equal">=</button>
+
+            <button onclick="calcAdd('0')" class="zero">0</button>
+            <button onclick="calcAdd('.')">.</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTES -->
+      <div class="tool-content" id="notes">
+        <h3>📝 Mening yozuvlarim</h3>
+        <textarea id="noteArea"
+          placeholder="Bu yerga yozuvlaringizni yozing..."></textarea>
+        <button class="main-btn" onclick="saveNotes()">Saqlash</button>
+        <p id="noteStatus" class="status"></p>
+      </div>
+
+      <!-- TASKS -->
+      <div class="tool-content" id="tasks">
+        <h3>✅ Vazifalarim</h3>
+        <div class="task-input">
+          <input id="taskInput" type="text"
+            placeholder="Yangi vazifa kiriting...">
+          <button class="main-btn" onclick="addTask()">Qo‘shish</button>
+        </div>
+        <ul id="taskList"></ul>
+      </div>
+
+      <!-- QR -->
+      <div class="tool-content" id="qr">
+        <h3>🔳 QR kod yaratish</h3>
+        <input id="qrInput" type="text"
+          placeholder="Matn yoki sayt havolasini kiriting">
+        <button class="main-btn" onclick="generateQR()">QR yaratish</button>
+        <div id="qrResult"></div>
+      </div>
+
+      <!-- TEXT -->
+      <div class="tool-content" id="text">
+        <h3>✍️ Matn muharriri</h3>
+        <textarea id="textEditor"
+          placeholder="Matningizni kiriting..."></textarea>
+        <div class="text-buttons">
+          <button onclick="changeText('upper')">KATTA HARF</button>
+          <button onclick="changeText('lower')">kichik harf</button>
+          <button onclick="changeText('clear')">Tozalash</button>
+          <button onclick="copyText()">Nusxalash</button>
+        </div>
+        <p id="textStatus" class="status"></p>
+      </div>
+
+      <!-- AI -->
+      <div class="tool-content" id="ai">
+        <h3>🤖 AI yordamchi</h3>
+        <div class="ai-info">
+          <p>Salom! Men FOYDALI.UZ AI yordamchisiman.</p>
+          <p>Haqiqiy AI javoblarini olish uchun server va API kaliti ulanishi kerak.</p>
+        </div>
+        <div class="task-input">
+          <input id="aiInput" type="text"
+            placeholder="Savolingizni yozing...">
+          <button class="main-btn" onclick="sendAI()">Yuborish</button>
+        </div>
+        <div id="aiResult" class="ai-result"></div>
+      </div>
+
+    </section>
+
+    <section class="about" id="about">
+      <h2>FOYDALI.UZ haqida</h2>
+      <p>
+        FOYDALI.UZ — kundalik ishlarni osonlashtirish uchun
+        yaratilgan foydali onlayn platforma.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#" class="logo">✦ FOYDALI<span>.UZ</span></a>
+    <p>© 2026 FOYDALI.UZ. Barcha huquqlar himoyalangan. Erkinboyev.S.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
